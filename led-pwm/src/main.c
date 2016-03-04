@@ -54,9 +54,9 @@ void main(void) {
 
   TRISB = 0xF7; // just RB3 is output
 
-  // config pwm module
-  PR2   = 0x9B;
-  T2CON = 0x05;
+  // config pwm module at ~= 98KHz
+  PR2   = 0x33;
+  T2CON = 0x04;
   CCP1CON = 0x0C;
 
   OPTION_REG = 0x40;
