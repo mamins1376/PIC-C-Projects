@@ -50,11 +50,9 @@ unsigned int skips, skips_buffer;
 void isr(void) __interrupt (0) {
   INTCON = 0x00;
 
-  if (--skips) {
-    PORTAbits.RA0++;
-  }
+  if (--skips) RA0++;
   
-  TMR0 = TMR0_CONFIG;
+  TMR0 = TMR_CONFIG;
   INTCON = INTCON_CONFIG;
 }
 
@@ -64,7 +62,7 @@ void setup(void) {
   TRISA = 0xFE;
 
   OPTION_REG = 0x80;
-  TMR0 = TMR0_CONFIG;
+  TMR0 = TMR_CONFIG;
   INTCON = INTCON_CONFIG;
 }
 
