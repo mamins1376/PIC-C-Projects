@@ -73,7 +73,7 @@ void calc_skips(int freq) {
 
   // skips calculated from following eq:
   // skips = INT_FREQ / ( 2 * freq )
-  skips = INT_FREQ_HALF / freq;
+  skips_buffer = INT_FREQ_HALF / freq;
 
 }
 
