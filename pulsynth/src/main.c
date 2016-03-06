@@ -30,7 +30,7 @@ static __code unsigned int __at (_CONFIG) config_word =
 #define INT_FREQ_HALF 43103
 
 // timer configuration for generating INT_FREQ
-#define TMR_CONFIG    0xE2
+#define TMR_PRELOAD    0xE2
 
 
 /*
@@ -47,22 +47,23 @@ unsigned int skips, skips_buffer;
  */
 
 // interrupt handler
-void isr(void) __interrupt (0) {
+void isr(void) __interrupt 0 {
   INTCON = 0x00;
 
-  if (--skips) RA0++;
+  if (--skips) RB0++;
   
-  TMR0 = TMR_CONFIG;
+  TMR0 = TMR_PRELOAD;
   INTCON = INTCON_CONFIG;
 }
 
 // apply system configuration and enable TMR0 interrupts
 void setup(void) {
-  PORTA = 0x00;
-  TRISA = 0xFE;
+  CMCON = 0x07;
+  PORTB = 0x00;
+  TRISB = 0xFE;
 
   OPTION_REG = 0x80;
-  TMR0 = TMR_CONFIG;
+  TMR0 = TMR_PRELOAD;
   INTCON = INTCON_CONFIG;
 }
 
