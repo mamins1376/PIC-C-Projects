@@ -49,10 +49,14 @@ unsigned int skips, skips_buffer;
 // interrupt handler
 void isr(void) __interrupt 0 {
   INTCON = 0x00;
-
-  if (--skips) RB0++;
-  
   TMR0 = TMR_PRELOAD;
+
+  // if skips is zero toggle RA0, else decrease it
+  if (skips)
+    skips--;
+  else
+    RB0++;
+  
   INTCON = INTCON_CONFIG;
 }
 
