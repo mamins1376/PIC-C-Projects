@@ -1,0 +1,447 @@
+gplink-1.4.0 #1107 (May  9 2015)
+Copyright (c) 1998-2014 gputils project
+Listing File Generated: 3-8-2016  07:15:10
+ 
+ 
+Address  Value    Disassembly              Source
+-------  -----    -----------              ------
+                                           ;--------------------------------------------------------
+                                           ; File Created by SDCC : free open source ANSI-C Compiler
+                                           ; Version 3.5.5 #9514 (Linux)
+                                           ;--------------------------------------------------------
+                                           ; PIC port for the 14-bit core
+                                           ;--------------------------------------------------------
+                                           ;	.file	"../src/main.c"
+                                           	list	p=16f627a
+                                           	radix dec
+                                           	include "p16f627a.inc"
+                                                   LIST
+                                           
+                                           ;==========================================================================
+                                           ; Build date : Aug 07 2014
+                                           ;  MPASM PIC16F627A processor include
+                                           ; 
+                                           ;  (c) Copyright 1999-2014 Microchip Technology, All rights reserved
+                                           ;==========================================================================
+                                           
+                                                   NOLIST
+                                           ;--------------------------------------------------------
+                                           ; config word(s)
+                                           ;--------------------------------------------------------
+002007   3f4a     addlw   0x4a             	__config 0x3f4a
+                                           ;--------------------------------------------------------
+                                           ; external declarations
+                                           ;--------------------------------------------------------
+                                           	extern	__divslong
+                                           	extern	_STATUSbits
+                                           	extern	_PORTAbits
+                                           	extern	_PORTBbits
+                                           	extern	_INTCONbits
+                                           	extern	_PIR1bits
+                                           	extern	_T1CONbits
+                                           	extern	_T2CONbits
+                                           	extern	_CCP1CONbits
+                                           	extern	_RCSTAbits
+                                           	extern	_CMCONbits
+                                           	extern	_OPTION_REGbits
+                                           	extern	_TRISAbits
+                                           	extern	_TRISBbits
+                                           	extern	_PIE1bits
+                                           	extern	_PCONbits
+                                           	extern	_TXSTAbits
+                                           	extern	_EECON1bits
+                                           	extern	_VRCONbits
+                                           	extern	_INDF
+                                           	extern	_TMR0
+                                           	extern	_PCL
+                                           	extern	_STATUS
+                                           	extern	_FSR
+                                           	extern	_PORTA
+                                           	extern	_PORTB
+                                           	extern	_PCLATH
+                                           	extern	_INTCON
+                                           	extern	_PIR1
+                                           	extern	_TMR1
+                                           	extern	_TMR1L
+                                           	extern	_TMR1H
+                                           	extern	_T1CON
+                                           	extern	_TMR2
+                                           	extern	_T2CON
+                                           	extern	_CCPR1
+                                           	extern	_CCPR1L
+                                           	extern	_CCPR1H
+                                           	extern	_CCP1CON
+                                           	extern	_RCSTA
+                                           	extern	_TXREG
+                                           	extern	_RCREG
+                                           	extern	_CMCON
+                                           	extern	_OPTION_REG
+                                           	extern	_TRISA
+                                           	extern	_TRISB
+                                           	extern	_PIE1
+                                           	extern	_PCON
+                                           	extern	_PR2
+                                           	extern	_TXSTA
+                                           	extern	_SPBRG
+                                           	extern	_EEDATA
+                                           	extern	_EEADR
+                                           	extern	_EECON1
+                                           	extern	_EECON2
+                                           	extern	_VRCON
+                                           	extern	___sdcc_saved_fsr
+                                           	extern	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; global declarations
+                                           ;--------------------------------------------------------
+                                           	global	_isr
+                                           	global	_setup
+                                           	global	_calc_skips
+                                           	global	_main
+                                           	global	_skips
+                                           	global	_skips_buffer
+                                           
+                                           	global PSAVE
+                                           	global SSAVE
+                                           	global WSAVE
+                                           	global STK12
+                                           	global STK11
+                                           	global STK10
+                                           	global STK09
+                                           	global STK08
+                                           	global STK07
+                                           	global STK06
+                                           	global STK05
+                                           	global STK04
+                                           	global STK03
+                                           	global STK02
+                                           	global STK01
+                                           	global STK00
+                                           
+                                           sharebank udata_ovr 0x0070
+                                           PSAVE	res 1
+                                           SSAVE	res 1
+                                           WSAVE	res 1
+                                           STK12	res 1
+                                           STK11	res 1
+                                           STK10	res 1
+                                           STK09	res 1
+                                           STK08	res 1
+                                           STK07	res 1
+                                           STK06	res 1
+                                           STK05	res 1
+                                           STK04	res 1
+                                           STK03	res 1
+                                           STK02	res 1
+                                           STK01	res 1
+                                           STK00	res 1
+                                           
+                                           ;--------------------------------------------------------
+                                           ; global definitions
+                                           ;--------------------------------------------------------
+                                           UD_main_0	udata
+                                           _skips	res	2
+                                           
+                                           UD_main_1	udata
+                                           _skips_buffer	res	2
+                                           
+                                           ;--------------------------------------------------------
+                                           ; absolute symbol definitions
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; compiler-defined variables
+                                           ;--------------------------------------------------------
+                                           UDL_main_0	udata
+                                           r0x100B	res	1
+                                           r0x1006	res	1
+                                           r0x1005	res	1
+                                           r0x1007	res	1
+                                           r0x1008	res	1
+                                           r0x100A	res	1
+                                           r0x1009	res	1
+                                           ;--------------------------------------------------------
+                                           ; initialized data
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; overlayable items in internal ram 
+                                           ;--------------------------------------------------------
+                                           ;	udata_ovr
+                                           ;--------------------------------------------------------
+                                           ; reset vector 
+                                           ;--------------------------------------------------------
+                                           STARTUP	code 0x0000
+000000   0000     nop                      	nop
+                                           	pagesel __sdcc_gsinit_startup
+000001   2982     goto    0x0182           	goto	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; interrupt and initialization code
+                                           ;--------------------------------------------------------
+                                           c_interrupt	code	0x0004
+                                           __sdcc_interrupt:
+                                           ;***
+                                           ;  pBlock Stats: dbName = I
+                                           ;***
+                                           ;1 compiler assigned register :
+                                           ;   r0x100B
+                                           ;; Starting pCode block
+                                           _isr:
+                                           ; 0 exit points
+                                           ;	.line	50; "../src/main.c"	void isr(void) __interrupt 0 {
+000004   00f2     movwf   0x72             	MOVWF	WSAVE
+000005   0e03     swapf   0x03, 0x0        	SWAPF	STATUS,W
+000006   0183     clrf    0x03             	CLRF	STATUS
+000007   00f1     movwf   0x71             	MOVWF	SSAVE
+000008   080a     movf    0x0a, 0x0        	MOVF	PCLATH,W
+000009   018a     clrf    0x0a             	CLRF	PCLATH
+00000a   00f0     movwf   0x70             	MOVWF	PSAVE
+00000b   0804     movf    0x04, 0x0        	MOVF	FSR,W
+00000c   1283     bcf     0x03, 0x5        	BANKSEL	___sdcc_saved_fsr
+00000d   1303     bcf     0x03, 0x6        
+00000e   00ab     movwf   0x2b             	MOVWF	___sdcc_saved_fsr
+                                           ;	.line	51; "../src/main.c"	INTCON = 0x00;
+00000f   1283     bcf     0x03, 0x5        	BANKSEL	_INTCON
+000010   1303     bcf     0x03, 0x6        
+000011   018b     clrf    0x0b             	CLRF	_INTCON
+                                           ;	.line	53; "../src/main.c"	if (--skips) RB0++;
+000012   30ff     movlw   0xff             	MOVLW	0xff
+000013   1283     bcf     0x03, 0x5        	BANKSEL	_skips
+000014   1303     bcf     0x03, 0x6        
+000015   07a7     addwf   0x27, 0x1        	ADDWF	_skips,F
+000016   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000017   03a8     decf    0x28, 0x1        	DECF	(_skips + 1),F
+000018   0827     movf    0x27, 0x0        	MOVF	_skips,W
+000019   0428     iorwf   0x28, 0x0        	IORWF	(_skips + 1),W
+00001a   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+00001b   2834     goto    0x0034           	GOTO	_00003_DS_
+00001c   1283     bcf     0x03, 0x5        	BANKSEL	r0x100B
+00001d   1303     bcf     0x03, 0x6        
+00001e   01a0     clrf    0x20             	CLRF	r0x100B
+00001f   1283     bcf     0x03, 0x5        	BANKSEL	_PORTBbits
+000020   1303     bcf     0x03, 0x6        
+000021   1c06     btfss   0x06, 0x0        	BTFSS	_PORTBbits,0
+000022   2826     goto    0x0026           	GOTO	_00001_DS_
+000023   1283     bcf     0x03, 0x5        	BANKSEL	r0x100B
+000024   1303     bcf     0x03, 0x6        
+000025   0aa0     incf    0x20, 0x1        	INCF	r0x100B,F
+                                           _00001_DS_:
+000026   1283     bcf     0x03, 0x5        	BANKSEL	r0x100B
+000027   1303     bcf     0x03, 0x6        
+000028   0aa0     incf    0x20, 0x1        	INCF	r0x100B,F
+000029   0c20     rrf     0x20, 0x0        	RRF	r0x100B,W
+00002a   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+00002b   282f     goto    0x002f           	GOTO	_00002_DS_
+00002c   1283     bcf     0x03, 0x5        	BANKSEL	_PORTBbits
+00002d   1303     bcf     0x03, 0x6        
+00002e   1006     bcf     0x06, 0x0        	BCF	_PORTBbits,0
+                                           _00002_DS_:
+00002f   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000030   2834     goto    0x0034           	GOTO	_00003_DS_
+000031   1283     bcf     0x03, 0x5        	BANKSEL	_PORTBbits
+000032   1303     bcf     0x03, 0x6        
+000033   1406     bsf     0x06, 0x0        	BSF	_PORTBbits,0
+                                           _00003_DS_:
+                                           ;	.line	55; "../src/main.c"	TMR0 = TMR_PRELOAD;
+000034   30e2     movlw   0xe2             	MOVLW	0xe2
+000035   1283     bcf     0x03, 0x5        	BANKSEL	_TMR0
+000036   1303     bcf     0x03, 0x6        
+000037   0081     movwf   0x01             	MOVWF	_TMR0
+                                           ;	.line	56; "../src/main.c"	INTCON = INTCON_CONFIG;
+000038   30a0     movlw   0xa0             	MOVLW	0xa0
+000039   008b     movwf   0x0b             	MOVWF	_INTCON
+00003a   1283     bcf     0x03, 0x5        	BANKSEL	___sdcc_saved_fsr
+00003b   1303     bcf     0x03, 0x6        
+00003c   082b     movf    0x2b, 0x0        	MOVF	___sdcc_saved_fsr,W
+00003d   1283     bcf     0x03, 0x5        	BANKSEL	FSR
+00003e   1303     bcf     0x03, 0x6        
+00003f   0084     movwf   0x04             	MOVWF	FSR
+000040   0870     movf    0x70, 0x0        	MOVF	PSAVE,W
+000041   008a     movwf   0x0a             	MOVWF	PCLATH
+000042   0183     clrf    0x03             	CLRF	STATUS
+000043   0e71     swapf   0x71, 0x0        	SWAPF	SSAVE,W
+000044   0083     movwf   0x03             	MOVWF	STATUS
+000045   0ef2     swapf   0x72, 0x1        	SWAPF	WSAVE,F
+000046   0e72     swapf   0x72, 0x0        	SWAPF	WSAVE,W
+                                           END_OF_INTERRUPT:
+000047   0009     retfie                   	RETFIE	
+                                           
+                                           ;--------------------------------------------------------
+                                           ; code
+                                           ;--------------------------------------------------------
+                                           code_main	code
+                                           ;***
+                                           ;  pBlock Stats: dbName = M
+                                           ;***
+                                           ;has an exit
+                                           ;functions called:
+                                           ;   _setup
+                                           ;   _calc_skips
+                                           ;   _setup
+                                           ;   _calc_skips
+                                           ;1 compiler assigned register :
+                                           ;   STK00
+                                           ;; Starting pCode block
+                                           S_main__main	code
+                                           _main:
+                                           ; 2 exit points
+                                           ;	.line	83; "../src/main.c"	setup();
+000305   2328     call    0x0328           	CALL	_setup
+                                           _00124_DS_:
+                                           ;	.line	88; "../src/main.c"	if (skips_buffer == 0)
+000306   1283     bcf     0x03, 0x5        	BANKSEL	_skips_buffer
+000307   1303     bcf     0x03, 0x6        
+000308   0829     movf    0x29, 0x0        	MOVF	_skips_buffer,W
+000309   042a     iorwf   0x2a, 0x0        	IORWF	(_skips_buffer + 1),W
+00030a   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+00030b   2b10     goto    0x0310           	GOTO	_00120_DS_
+                                           ;	.line	89; "../src/main.c"	calc_skips(440);
+00030c   30b8     movlw   0xb8             	MOVLW	0xb8
+00030d   00ff     movwf   0x7f             	MOVWF	STK00
+00030e   3001     movlw   0x01             	MOVLW	0x01
+00030f   22d6     call    0x02d6           	CALL	_calc_skips
+                                           _00120_DS_:
+                                           ;	.line	92; "../src/main.c"	if (skips == 0) {
+000310   1283     bcf     0x03, 0x5        	BANKSEL	_skips
+000311   1303     bcf     0x03, 0x6        
+000312   0827     movf    0x27, 0x0        	MOVF	_skips,W
+000313   0428     iorwf   0x28, 0x0        	IORWF	(_skips + 1),W
+000314   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+000315   2b06     goto    0x0306           	GOTO	_00124_DS_
+                                           ;	.line	93; "../src/main.c"	skips = skips_buffer;
+000316   1283     bcf     0x03, 0x5        	BANKSEL	_skips_buffer
+000317   1303     bcf     0x03, 0x6        
+000318   0829     movf    0x29, 0x0        	MOVF	_skips_buffer,W
+000319   1283     bcf     0x03, 0x5        	BANKSEL	_skips
+00031a   1303     bcf     0x03, 0x6        
+00031b   00a7     movwf   0x27             	MOVWF	_skips
+00031c   1283     bcf     0x03, 0x5        	BANKSEL	_skips_buffer
+00031d   1303     bcf     0x03, 0x6        
+00031e   082a     movf    0x2a, 0x0        	MOVF	(_skips_buffer + 1),W
+00031f   1283     bcf     0x03, 0x5        	BANKSEL	_skips
+000320   1303     bcf     0x03, 0x6        
+000321   00a8     movwf   0x28             	MOVWF	(_skips + 1)
+                                           ;	.line	94; "../src/main.c"	skips_buffer = 0;
+000322   1283     bcf     0x03, 0x5        	BANKSEL	_skips_buffer
+000323   1303     bcf     0x03, 0x6        
+000324   01a9     clrf    0x29             	CLRF	_skips_buffer
+000325   01aa     clrf    0x2a             	CLRF	(_skips_buffer + 1)
+000326   2b06     goto    0x0306           	GOTO	_00124_DS_
+000327   0008     return                   	RETURN	
+                                           ; exit point of _main
+                                           
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;has an exit
+                                           ;functions called:
+                                           ;   __divslong
+                                           ;   __divslong
+                                           ;13 compiler assigned registers:
+                                           ;   r0x1005
+                                           ;   STK00
+                                           ;   r0x1006
+                                           ;   r0x1007
+                                           ;   r0x1008
+                                           ;   r0x1009
+                                           ;   r0x100A
+                                           ;   STK06
+                                           ;   STK05
+                                           ;   STK04
+                                           ;   STK03
+                                           ;   STK02
+                                           ;   STK01
+                                           ;; Starting pCode block
+                                           S_main__calc_skips	code
+                                           _calc_skips:
+                                           ; 2 exit points
+0002d6   1283     bcf     0x03, 0x5        	BANKSEL	r0x1008
+0002d7   1303     bcf     0x03, 0x6        
+0002d8   00a4     movwf   0x24             	MOVWF	r0x1008
+                                           ;	.line	71; "../src/main.c"	void calc_skips(int freq) {
+0002d9   00a2     movwf   0x22             	MOVWF	r0x1005
+0002da   087f     movf    0x7f, 0x0        	MOVF	STK00,W
+                                           ;	.line	75; "../src/main.c"	skips_buffer = INT_FREQ_HALF / freq;
+0002db   00a1     movwf   0x21             	MOVWF	r0x1006
+0002dc   00a3     movwf   0x23             	MOVWF	r0x1007
+                                           ;;99	MOVF	r0x1005,W
+0002dd   3000     movlw   0x00             	MOVLW	0x00
+0002de   1ba4     btfsc   0x24, 0x7        	BTFSC	r0x1008,7
+0002df   30ff     movlw   0xff             	MOVLW	0xff
+0002e0   00a6     movwf   0x26             	MOVWF	r0x1009
+0002e1   00a5     movwf   0x25             	MOVWF	r0x100A
+0002e2   0823     movf    0x23, 0x0        	MOVF	r0x1007,W
+0002e3   00f9     movwf   0x79             	MOVWF	STK06
+0002e4   0824     movf    0x24, 0x0        	MOVF	r0x1008,W
+0002e5   00fa     movwf   0x7a             	MOVWF	STK05
+0002e6   0825     movf    0x25, 0x0        	MOVF	r0x100A,W
+0002e7   00fb     movwf   0x7b             	MOVWF	STK04
+0002e8   0826     movf    0x26, 0x0        	MOVF	r0x1009,W
+0002e9   00fc     movwf   0x7c             	MOVWF	STK03
+0002ea   305f     movlw   0x5f             	MOVLW	0x5f
+0002eb   00fd     movwf   0x7d             	MOVWF	STK02
+0002ec   30a8     movlw   0xa8             	MOVLW	0xa8
+0002ed   00fe     movwf   0x7e             	MOVWF	STK01
+0002ee   3000     movlw   0x00             	MOVLW	0x00
+0002ef   00ff     movwf   0x7f             	MOVWF	STK00
+0002f0   3000     movlw   0x00             	MOVLW	0x00
+                                           	PAGESEL	__divslong
+0002f1   2048     call    0x0048           	CALL	__divslong
+                                           	PAGESEL	$
+0002f2   1283     bcf     0x03, 0x5        	BANKSEL	r0x1008
+0002f3   1303     bcf     0x03, 0x6        
+0002f4   00a4     movwf   0x24             	MOVWF	r0x1008
+0002f5   087f     movf    0x7f, 0x0        	MOVF	STK00,W
+0002f6   00a3     movwf   0x23             	MOVWF	r0x1007
+0002f7   087e     movf    0x7e, 0x0        	MOVF	STK01,W
+0002f8   00a2     movwf   0x22             	MOVWF	r0x1005
+0002f9   087d     movf    0x7d, 0x0        	MOVF	STK02,W
+0002fa   00a1     movwf   0x21             	MOVWF	r0x1006
+0002fb   1283     bcf     0x03, 0x5        	BANKSEL	_skips_buffer
+0002fc   1303     bcf     0x03, 0x6        
+0002fd   00a9     movwf   0x29             	MOVWF	_skips_buffer
+0002fe   1283     bcf     0x03, 0x5        	BANKSEL	r0x1005
+0002ff   1303     bcf     0x03, 0x6        
+000300   0822     movf    0x22, 0x0        	MOVF	r0x1005,W
+000301   1283     bcf     0x03, 0x5        	BANKSEL	_skips_buffer
+000302   1303     bcf     0x03, 0x6        
+000303   00aa     movwf   0x2a             	MOVWF	(_skips_buffer + 1)
+000304   0008     return                   	RETURN	
+                                           ; exit point of _calc_skips
+                                           
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;has an exit
+                                           ;; Starting pCode block
+                                           S_main__setup	code
+                                           _setup:
+                                           ; 2 exit points
+                                           ;	.line	61; "../src/main.c"	CMCON = 0x07;
+000328   3007     movlw   0x07             	MOVLW	0x07
+000329   1283     bcf     0x03, 0x5        	BANKSEL	_CMCON
+00032a   1303     bcf     0x03, 0x6        
+00032b   009f     movwf   0x1f             	MOVWF	_CMCON
+                                           ;	.line	62; "../src/main.c"	PORTB = 0x00;
+00032c   0186     clrf    0x06             	CLRF	_PORTB
+                                           ;	.line	63; "../src/main.c"	TRISB = 0xFE;
+00032d   30fe     movlw   0xfe             	MOVLW	0xfe
+00032e   1683     bsf     0x03, 0x5        	BANKSEL	_TRISB
+00032f   1303     bcf     0x03, 0x6        
+000330   0086     movwf   0x06             	MOVWF	_TRISB
+                                           ;	.line	65; "../src/main.c"	OPTION_REG = 0x80;
+000331   3080     movlw   0x80             	MOVLW	0x80
+000332   0081     movwf   0x01             	MOVWF	_OPTION_REG
+                                           ;	.line	66; "../src/main.c"	TMR0 = TMR_PRELOAD;
+000333   30e2     movlw   0xe2             	MOVLW	0xe2
+000334   1283     bcf     0x03, 0x5        	BANKSEL	_TMR0
+000335   1303     bcf     0x03, 0x6        
+000336   0081     movwf   0x01             	MOVWF	_TMR0
+                                           ;	.line	67; "../src/main.c"	INTCON = INTCON_CONFIG;
+000337   30a0     movlw   0xa0             	MOVLW	0xa0
+000338   008b     movwf   0x0b             	MOVWF	_INTCON
+000339   0008     return                   	RETURN	
+                                           ; exit point of _setup
+                                           
+                                           
+                                           ;	code size estimation:
+                                           ;	  114+   29 =   143 instructions (  344 byte)
+                                           
+                                           	end
