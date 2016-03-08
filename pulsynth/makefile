@@ -3,6 +3,7 @@ CC=/usr/local/share/sdcc/bin/sdcc
 RM=rm -rf
 PROG=sudo picprog
 SERIAL=/dev/ttyS0
+SIM=gpsim
 
 # program specific configuration
 FAMILY=pic14
@@ -22,6 +23,9 @@ clean:
 
 program: compile
 	$(PROG) -p $(SERIAL) -i $(BUILD)/$(SRC:.c=.hex) -d pic$(CHIP) --erase --burn
+
+simulate: compile
+	$(SIM) $(BUILD)/$(SRC:.c=.cod)
 
 
 .PHONY: all $(SRC:.c=.hex) clean program
